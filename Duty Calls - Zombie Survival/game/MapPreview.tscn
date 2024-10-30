@@ -1,0 +1,140 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://game/MapPreview.gd" type="Script" id=1]
+[ext_resource path="res://Import Files/House.png" type="Texture" id=2]
+[ext_resource path="res://Import Files/GrindAndDeath_Demo.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fade_out/FadeOut.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Import Files/map_game_view.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 48
+font_data = ExtResource( 3 )
+
+[node name="MapPreview" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeOut" parent="." instance=ExtResource( 4 )]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 1280.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.392157, 0, 0, 1 )
+custom_constants/shadow_offset_y = 5
+text = "Map Preview"
+align = 1
+
+[node name="BackButtonContainer" type="VBoxContainer" parent="."]
+margin_left = 475.0
+margin_top = 660.0
+margin_right = 805.0
+margin_bottom = 700.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="BackButtonContainer"]
+margin_right = 330.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Back"
+
+[node name="MapViewContainer" type="HBoxContainer" parent="."]
+margin_left = 40.0
+margin_top = 100.0
+margin_right = 1240.0
+margin_bottom = 620.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapLayoutContainer" type="CenterContainer" parent="MapViewContainer"]
+margin_right = 600.0
+margin_bottom = 520.0
+rect_min_size = Vector2( 600, 520 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapViewContainer/MapLayoutContainer"]
+margin_left = 10.0
+margin_top = 46.0
+margin_right = 590.0
+margin_bottom = 473.0
+rect_min_size = Vector2( 580, 427 )
+
+[node name="Label" type="Label" parent="MapViewContainer/MapLayoutContainer/VBoxContainer"]
+margin_right = 580.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.392157, 0, 0, 1 )
+custom_constants/shadow_offset_y = 5
+text = "Layout"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="MapViewContainer/MapLayoutContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 580.0
+margin_bottom = 378.0
+texture = ExtResource( 2 )
+
+[node name="GameViewContainer" type="CenterContainer" parent="MapViewContainer"]
+margin_left = 604.0
+margin_right = 1200.0
+margin_bottom = 520.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapViewContainer/GameViewContainer"]
+margin_left = 8.0
+margin_top = 46.0
+margin_right = 588.0
+margin_bottom = 473.0
+rect_min_size = Vector2( 580, 427 )
+
+[node name="Label" type="Label" parent="MapViewContainer/GameViewContainer/VBoxContainer"]
+margin_right = 580.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.392157, 0, 0, 1 )
+custom_constants/shadow_offset_y = 5
+text = "Game View"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="MapViewContainer/GameViewContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 580.0
+margin_bottom = 378.0
+texture = ExtResource( 5 )
+[connection signal="pressed" from="BackButtonContainer/BackButton" to="." method="_on_Backbutton_pressed"]
